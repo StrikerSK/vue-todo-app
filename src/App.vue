@@ -1,24 +1,48 @@
 <template>
   <div id="app">
-    <VueCounter />
-    <UserTask />
+    <h1>Vue Todo Application</h1>
+    <UserTaskForm @add-task="addTask" />
+    <div class="task-list">
+      <UserTask
+          v-bind:key="task.id"
+          v-for="task in this.tasks"
+          :task="task"
+          @toggle-done="toggleDone"
+          @delete-task="deleteTask"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import VueCounter from "@/components/VueCounter";
+import UserTaskForm from "@/components/UserTaskForm";
 import UserTask from "@/components/UserTask";
+import moment from "moment";
 
 export default {
   name: 'App',
   components: {
     UserTask,
-    VueCounter
+    UserTaskForm
   },
   data() {
     return {
       count: 0,
-      tasks: []
+      tasks: [
+          {
+            id: "1",
+            name: "First todo",
+            time: moment().format(),
+            done: true
+          },
+        {
+          id: "2",
+          name: "Second todo",
+          description: "Second todo description",
+          time: moment().format(),
+          done: false
+        }
+      ]
     }
   },
   methods: {
@@ -26,7 +50,14 @@ export default {
       this.count = this.count + 1;
     },
     addTask(task) {
-      this.tasks.concat(task);
+      this.tasks = [...this.tasks, task]
+    },
+    toggleDone(taskID) {
+      const taskIndex = this.tasks.findIndex(({id}) => id === taskID);
+      this.tasks[taskIndex].done = !this.tasks[taskIndex].done
+    },
+    deleteTask(taskID) {
+      this.tasks = this.tasks.filter(({id}) => id !== taskID);
     }
   }
 }
@@ -35,6 +66,10 @@ export default {
 <style>
 html {
   font-size: 62.5%;
+}
+
+h1 {
+  font-size: 5rem;
 }
 
 #app {
