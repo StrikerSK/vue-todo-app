@@ -1,11 +1,15 @@
 <template>
   <div class="task-box">
-    <span>Task name: {{ task.name }}</span>
-    <span>Task description: {{ task.description }}</span>
-    <span>Task created at: {{ parseDate() }}</span>
-    <span>{{ `This task is ${task.done ? "" : "not"} done` }}</span>
-    <button @click="toggleTaskDone(task.id)">Toggle done</button>
-    <button @click="deleteTask(task.id)">Delete task</button>
+    <div :class="[task.done ? 'done-task' : '','task-details']">
+      <h3>{{ task.name }}</h3>
+      <span>{{ task.description }}</span>
+      <span>{{ parseDate() }}</span>
+      <span>{{ `This task is ${task.done ? "" : "not"} done` }}</span>
+    </div>
+    <div class="button-box">
+      <button @click="toggleTaskDone(task.id)">Toggle done</button>
+      <button @click="deleteTask(task.id)">Delete task</button>
+    </div>
   </div>
 </template>
 
@@ -34,17 +38,41 @@ export default {
 </script>
 
 <style scoped>
+h3 {
+  margin: 0;
+}
+
 .task-box {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.task-details {
   font-size: 1.5rem;
+  width: 40rem;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
-  margin-bottom: 2rem;
 }
 
-button {
+.done-task {
+  border-left: 3px solid green;
+}
+
+.button-box {
+  height: 5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.button-box button {
   width: 15rem;
 }
 </style>

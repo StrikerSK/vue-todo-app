@@ -9,7 +9,7 @@
         <label for="description">Task description</label>
         <input id="description" name="description" type="text" v-model="description" />
       </div>
-      <button type="submit" v-on:click="printValue">Create task</button>
+      <button type="submit" v-on:click="printValue">Save task</button>
     </form>
   </div>
 </template>

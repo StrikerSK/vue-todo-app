@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <h1>Vue Todo Application</h1>
-    <UserTaskForm @add-task="addTask" />
+    <button v-on:click="toggleShowAddTask">Add task</button>
+    <div v-show="showAddTask">
+      <UserTaskForm @add-task="addTask" />
+    </div>
     <div class="task-list">
       <UserTask
           v-bind:key="task.id"
@@ -42,7 +45,8 @@ export default {
           time: moment().format(),
           done: false
         }
-      ]
+      ],
+      showAddTask: false
     }
   },
   methods: {
@@ -50,7 +54,11 @@ export default {
       this.count = this.count + 1;
     },
     addTask(task) {
-      this.tasks = [...this.tasks, task]
+      this.tasks = [...this.tasks, task];
+
+      if (!confirm("Task added! Do you want to add new one?")) {
+        this.toggleShowAddTask();
+      }
     },
     toggleDone(taskID) {
       const taskIndex = this.tasks.findIndex(({id}) => id === taskID);
@@ -58,6 +66,9 @@ export default {
     },
     deleteTask(taskID) {
       this.tasks = this.tasks.filter(({id}) => id !== taskID);
+    },
+    toggleShowAddTask() {
+      this.showAddTask = !this.showAddTask;
     }
   }
 }
