@@ -1,6 +1,6 @@
 <template>
   <div class="task-box">
-    <div :class="[task.done ? 'done-task' : '','task-details']">
+    <div :class="[task.done ? 'done-task' : '', 'task-details']">
       <h3>{{ task.name }}</h3>
       <span>{{ task.description }}</span>
       <span>{{ parseDate() }}</span>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Vue Todo Application</h1>
-    <button v-on:click="toggleShowAddTask">Add task</button>
+    <UserButton v-bind:button-text="this.showAddTask ? 'Close' : 'Add task'" @btn-click="toggleShowAddTask"/>
     <div v-show="showAddTask">
       <UserTaskForm @add-task="addTask" />
     </div>
@@ -21,10 +21,12 @@
 import UserTaskForm from "@/components/UserTaskForm";
 import UserTask from "@/components/UserTask";
 import moment from "moment";
+import UserButton from "@/components/UserButton";
 
 export default {
   name: 'App',
   components: {
+    UserButton,
     UserTask,
     UserTaskForm
   },

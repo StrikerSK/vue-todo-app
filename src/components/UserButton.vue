@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="clickedFunc()">{{ buttonText }}</button>
+  <button class="custom-button" @click="onClick">{{ buttonText }}</button>
 </template>
 
 <script>
@@ -7,13 +7,21 @@ export default {
   name: "UserButton",
   props: {
     buttonText: String,
-    clickedFunc: Function
+  },
+  methods: {
+    onClick() {
+      this.$emit('btn-click');
+    }
   }
 }
 </script>
 
 <style scoped>
-button {
-  width: 8rem;
+.custom-button {
+  background-color: bisque;
+  border: 1px solid black;
+  border-radius: 1.2rem;
+  width: 12.5rem;
+  height: 2.5rem;
 }
 </style>
