@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <h1>Vue Todo Application</h1>
-    <UserButton v-bind:button-text="this.showAddTask ? 'Close' : 'Add task'" @btn-click="toggleShowAddTask"/>
-    <div v-show="showAddTask">
-      <UserTaskForm @add-task="addTask" />
+    <div id="form-div">
+      <UserButton v-bind:button-text="this.showAddTask ? 'Close' : 'Add task'" @btn-click="toggleShowAddTask"/>
+      <UserTaskForm @add-task="addTask" v-show="showAddTask"/>
     </div>
     <div class="task-list">
       <UserTask
@@ -77,12 +77,16 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0 !important;
+}
+
 html {
   font-size: 62.5%;
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 6rem;
 }
 
 #app {
@@ -91,5 +95,20 @@ h1 {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  min-height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#form-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.5rem;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <button class="custom-button" @click="onClick">{{ buttonText }}</button>
+  <button v-bind:type="this.type" class="custom-button" @click="onClick">{{ buttonText }}</button>
 </template>
 
 <script>
@@ -7,6 +7,10 @@ export default {
   name: "UserButton",
   props: {
     buttonText: String,
+    btnType: {
+      type: String,
+      default: "button"
+    }
   },
   methods: {
     onClick() {
@@ -22,6 +26,6 @@ export default {
   border: 1px solid black;
   border-radius: 1.2rem;
   width: 12.5rem;
-  height: 2.5rem;
+  height: 2rem;
 }
 </style>

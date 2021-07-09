@@ -7,17 +7,19 @@
       <span>{{ `This task is ${task.done ? "" : "not"} done` }}</span>
     </div>
     <div class="button-box">
-      <button @click="toggleTaskDone(task.id)">Toggle done</button>
-      <button @click="deleteTask(task.id)">Delete task</button>
+      <UserButton button-text="Toggle done" @btn-click="toggleTaskDone(task.id)"/>
+      <UserButton button-text="Delete task" @btn-click="deleteTask(task.id)"/>
     </div>
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import UserButton from "@/components/UserButton";
 
 export default {
   name: "UserTask",
+  components: {UserButton},
   props: {
     task: Object
   },
@@ -72,7 +74,4 @@ h3 {
   align-items: center;
 }
 
-.button-box button {
-  width: 15rem;
-}
 </style>

@@ -80,4 +80,12 @@ export default {
   align-items: center;
   width: 60%;
 }
+
+button {
+  background-color: bisque;
+  border: 1px solid black;
+  border-radius: 1.2rem;
+  width: 12.5rem;
+  height: 2rem;
+}
 </style>
