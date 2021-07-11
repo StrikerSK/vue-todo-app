@@ -5,7 +5,7 @@
       <UserButton v-bind:button-text="this.showAddTask ? 'Close' : 'Add task'" @btn-click="toggleShowAddTask"/>
       <UserTaskForm @add-task="addTask" v-show="showAddTask"/>
     </div>
-    <div class="task-list">
+    <div id="task-list">
       <UserTask
           v-bind:key="task.id"
           v-for="task in this.tasks"
@@ -43,7 +43,7 @@ export default {
         {
           id: "2",
           name: "Second todo",
-          description: "Second todo description",
+          description: "Todo with description",
           time: moment().format(),
           done: false
         }
@@ -101,14 +101,22 @@ h1 {
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 #form-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   align-items: center;
   margin-bottom: 2.5rem;
+}
+
+#task-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 </style>

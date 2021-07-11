@@ -1,8 +1,8 @@
 <template>
-  <div class="task-box">
-    <div :class="[task.done ? 'done-task' : '', 'task-details']">
+  <div :class="[task.done ? 'done-task' : '', 'task-box']">
+    <div class="task-details">
       <h3>{{ task.name }}</h3>
-      <span>{{ task.description }}</span>
+      <span :id="[!task.description ? 'no-desc' : '']">{{ !task.description ? "No description" : task.description }}</span>
       <span>{{ parseDate() }}</span>
       <span>{{ `This task is ${task.done ? "" : "not"} done` }}</span>
     </div>
@@ -46,8 +46,16 @@ h3 {
 
 .task-box {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-bottom: 1rem;
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  border-left: solid 0.25rem red;
+  border-radius: 3rem;
+
+  background-color: lightgrey;
 
   justify-content: space-evenly;
   align-items: center;
@@ -62,16 +70,19 @@ h3 {
 }
 
 .done-task {
-  border-left: 3px solid green;
+  border-left: 0.25rem solid green;
 }
 
 .button-box {
-  height: 5rem;
-
+  width: 80%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+#no-desc {
+  color: darkgrey;
 }
 
 </style>

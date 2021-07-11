@@ -1,16 +1,12 @@
 <template>
-  <button v-bind:type="this.type" class="custom-button" @click="onClick">{{ buttonText }}</button>
+  <button type="button" class="custom-button" @click="onClick">{{ buttonText }}</button>
 </template>
 
 <script>
 export default {
   name: "UserButton",
   props: {
-    buttonText: String,
-    btnType: {
-      type: String,
-      default: "button"
-    }
+    buttonText: String
   },
   methods: {
     onClick() {
